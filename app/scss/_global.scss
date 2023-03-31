@@ -1,0 +1,54 @@
+html {
+   --top-spacing: 100px;
+   scroll-padding-top: var(--top-spacing);
+   height: 100%;
+}
+
+*,
+*::before,
+*::after {
+   box-sizing: inherit;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   padding: 0;
+   margin: 0;
+}
+a {
+   display: inline-block;
+   text-decoration: none;
+}
+
+ul,
+li {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+}
+
+body {
+   box-sizing: border-box;
+   // font-family: 'Quicksand', sans-serif;
+   // font-family: "Raleway", sans-serif;
+   font-size: 24px;
+   line-height: 1.5;
+   font-weight: 400;
+   background-color: #333;
+   margin: 0;
+   padding: 0;
+   height: 100%;
+}
+
+body._lock {
+   overflow: hidden;
+}
+
+.container {
+   max-width: 1230px;
+   margin: 0 auto;
+   padding: 0 15px;
+}
