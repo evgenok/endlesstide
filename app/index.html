@@ -15,7 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&family=Ruslan+Display&family=Russo+One&display=swap"
       rel="stylesheet">
    <link rel="stylesheet" href="css/style.min.css">
-   <link rel="icon" href="">
+   <link rel="icon" href="images/icons/1.svg">
 </head>
 
 <body>
@@ -32,17 +32,38 @@
                   <li><img src="images/icons/3.svg" alt=""><span>г. Краснодар</span></li>
                </ul>
                <h2 class="inner__subtitle">Оздоровление методами остеопатии без ограничений по возрасту</h2>
-               <button class="btn">Написать сообщение</button>
+               <button class="btn menu__btn open-popup">Написать сообщение</button>
                <ul class="icons">
-                  <li><a href=""><img src="images/icons/tlg.svg" alt="" class="icon"></a></li>
+                  <li><a href="https://msng.link/o/?PetrMinin=tg"><img src="images/icons/tlg.svg" alt=""
+                           class="icon"></a></li>
                   <li><a href=""><img src="images/icons/vk.svg" alt="" class="icon"></a></li>
-                  <li><a href=""><img src="images/icons/whats.svg" alt="" class="icon"></a></li>
+                  <li><a href="https://wa.me/79886745204"><img src="images/icons/whats.svg" alt="" class="icon"></a>
+                  </li>
                </ul>
             </div>
          </div>
       </div>
    </main>
 
+   <div class="popup__bg">
+      <div class="popup">
+         <form id="form" class="modal__form" action="#">
+            <div class="modal__top">
+               <button type="button" class="close-popup round-close"></button>
+            </div>
+            <div class="modal__title">
+               Контакт для обратной связи(Email):
+            </div>
+            <input class="_email modal__input _req " maxlength="50" type="text" name="email" id="formEmail" required>
+            <div class="modal__title">
+               Ваше сообщение:
+            </div>
+            <textarea class="modal__textarea _req" name="message" maxlength="150" id="formMessage"
+               name="message" required></textarea>
+            <button type="submit" id="button" class="modal__btn btn cooperation__btn">отправить</button>
+         </form>
+      </div>
+   </div>
 
 
    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="" crossorigin="anonymous"
