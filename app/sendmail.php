@@ -14,27 +14,19 @@ $mail->IsHTML(true); /* Разрешаем работу с HTML */
 // $email = $_POST["email"]; /* Почта */
 // $message = $_POST["message"]; /* Сообщение с формы */
 
-   $mail->addAddress('mirtps@mail.ru')
-
-   $mail->Subject = 'Здравствуйте!';
-
-   if(trim(!empty($_POST['email']))){
-      $body.='<p?><strong>Email:</strong> ' .$_POST['email'].'</p>';
-   }
-   if(trim(!empty($_POST['message']))){
-      $body.='<p?><strong>Сообщение:</strong> ' .$_POST['message'].'</p>';
-   }
-
-   $mail->Body = $body;
-
-   if(!$mail->send()){
-      $message = 'ОШИБКА';
-   }else{
-      $message = 'Данные отправлены';
-   }
-
-   $response = ['message' => $message];
-   header = ('Content-type: appllication/json');
-
-   echo json_encode($response);
-?>
+   // $mail->addAddress('')
+$to = "popovevgen18042001@mail.ru"; // Тут указываем свою почту
+$subject = "e-mail тест"; // Тема письма
+// Сообщение
+$message = "Это тестовое сообщение.\n
+Если ты можешь его прочитать, значит все ОК?\n
+Конец сообщения.";
+// Перенос строк
+$message = wordwrap($message, 70);
+// возратит TRUE, если письмо успешно передано
+// почтовой программе например exim
+if (mail($to, $subject, $message)) {
+	echo("Почта была отправлена … вроде бы");
+} else { 
+	echo("Увы, но почта не отправлена!");
+}
