@@ -129,7 +129,7 @@
       display: block;
       width: 100%;
       margin-bottom: 30px;
-      height: 90px;
+      height: 70px;
       border: none;
       background-color: $blue;
       padding-left: 15px;
@@ -225,12 +225,12 @@
    box-shadow: 0 0 15px red;
 }
 .modal__input {
-   height: 90px;
+   height: 70px;
    font-size: 28px;
 }
 .modal__textarea {
    resize: none;
-   height: 150px;
+   height: 140px;
    font-size: 24px;
 }
 .modal__btn {
@@ -242,5 +242,8 @@
    font-size: 24px;
    text-transform: uppercase;
 }
+// .none {
+//    display: none !important;
+// }
 
 @import "media";

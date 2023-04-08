@@ -12,9 +12,6 @@ openPopupButton.forEach((button) => {
       event.preventDefault();
       popupBg.classList.add('active');
       popup.classList.add('active');
-      pageYOffset = window.pageYOffset;
-      isModalOpen = true;
-      // document.addEventListener('scroll', onScroll);
    })
 });
 
@@ -33,63 +30,77 @@ document.addEventListener('click', (event) => {
 
 // -------обработка формы
 
-document.addEventListener('DOMContentLoaded', function () {
-   const form = document.getElementById('form');
+window.onload = function () {
+   const getData = Model.getData;
 
-   form.addEventListener('submit', formSend);
+   // const openFormBtn = document.querySelector('#openFormBtn');
+   const orderForm = document.querySelector('#orderForm');
+   const submitFormBtn = document.querySelector('#submitFormBtn');
 
-   async function formSend(e) {
+
+   orderForm.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      let error = formValidate(form);
-      let formData = new FormData(form);
+      const formData = new FormData(orderForm);
 
-      if (error === 0) {
-         form.classList.add('_sending');
-         let response = await fetch('sendmail.php', {
-            method: 'POST',
-            body: formData
-         });
-         if (response.ok) {
-            alert(result.message);
-            formPreview.innerHTML = '';
-            form.reset();
-            form.classList.remove('_sending');
-         } else {
-            alert('ОШИБКА');
-            form.classList.remove('_sending');
-         }
-      } else {
-         alert('Введите корректный Email')
-      }
-   }
+      submitFormBtn.setAttribute('disabled', true);
+      submitFormBtn.innerText = ('Заявка отправляется...');
 
-   function formValidate(form) {
-      let error = 0;
-      let formReq = document.querySelectorAll('._req');
+      orderForm.querySelectorAll('input, textarea').forEach(function (input) {
+         input.setAttribute('disabled', true);
+      })
 
-      for (let index = 0; index < formReq.length; index++) {
-         const input = formReq[index];
-         formRemoveError(input);
+      fetchData();
 
-         if (input.classList.contains('_email')) {
-            if (emailTest(input)) {
-               formAddError(input);
-               error++;
+      async function fetchData() {
+
+         let url = checkOnUrl(document.location.href);
+
+         function checkOnUrl(url) {
+            let urlArrayDot = url.split('.');
+
+            if (urlArrayDot[urlArrayDot.length - 1] === 'html') {
+               urlArrayDot.pop();
+               let newUrl = urlArrayDot.join('.')
+               let urlArraySlash = newUrl.split('/');
+               urlArraySlash.pop();
+               newUrl = urlArraySlash.join('/') + '/';
+               return newUrl;
             }
+            return url;
          }
+
+         const response = await fetch(url + 'mail.php', {
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json;charset=utf-8',
+            },
+            body: JSON.stringify({
+               form: {
+                  name: formData.get('name'),
+                  email: formData.get('email'),
+                  phone: formData.get('phone'),
+                  textarea: formData.get('textarea'),
+               },
+            })
+         });
+
+
+         const result = await response.text();
+         console.log(result);
+
+         submitFormBtn.removeAttribute('disabled', true);
+         submitFormBtn.innerText = 'Отправить';
+
+         orderForm.querySelectorAll('input, textarea').forEach((input) => {
+            input.removeAttribute('disabled', true);
+         });
+
+         // Очищаем поля формы
+         orderForm.reset();
+         orderForm.classList.add('none');
+
       }
-      return error;
-   }
-   function formAddError(input) {
-      input.parentElement.classList.add('_error');
-      input.classList.add('_error');
-   }
-   function formRemoveError(input) {
-      input.parentElement.classList.remove('_error');
-      input.classList.remove('_error');
-   }
-   function emailTest(input) {
-      return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value);
-   }
-});
+
+   })
+}
