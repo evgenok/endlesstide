@@ -18,7 +18,6 @@ openPopupButton.forEach((button) => {
 closePopupBtn.addEventListener('click', () => {
    popupBg.classList.remove('active');
    popup.classList.remove('active');
-   isModalOpen = false;
 });
 
 document.addEventListener('click', (event) => {
@@ -31,7 +30,6 @@ document.addEventListener('click', (event) => {
 // -------обработка формы
 
 window.onload = function () {
-   const getData = Model.getData;
 
    // const openFormBtn = document.querySelector('#openFormBtn');
    const orderForm = document.querySelector('#orderForm');

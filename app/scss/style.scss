@@ -165,12 +165,10 @@
 }
 .popup {
    position: absolute;
-   top: 100px;
    left: 50%;
    transform: translateX(-50%) scale(0);
    transition: all 0.5s linear;
    width: 900px;
-   height: 650px;
    border-radius: 5px;
    background-color: rgba(140, 142, 147, 0.7);
    background-size: contain;
@@ -181,7 +179,7 @@
    transform: translateX(-50%) scale(1);
 }
 .modal__form {
-   padding: 60px 120px 120px;
+   padding: 60px 120px 30px;
    display: flex;
    flex-direction: column;
    position: relative;
@@ -230,7 +228,7 @@
 }
 .modal__textarea {
    resize: none;
-   height: 140px;
+   height: 130px;
    font-size: 24px;
 }
 .modal__btn {

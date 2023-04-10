@@ -1,5 +1,5 @@
 <?php
-
+header("Content-Type: text/plain; charset=utf-8");
 // echo "Hello from PHP!";
 
 $data = json_decode(file_get_contents("php://input"), true);
@@ -8,18 +8,15 @@ $data = json_decode(file_get_contents("php://input"), true);
 // die();
 
 // Формируем текст письма
-$message = "<h2>Данные клиента</h2>";
-$message .= "Сообщение от: {$data['form']['name']} <br>";
-$message .= "Email:  {$data['form']['email']}<br>";
-$message .= "Телефон:  {$data['form']['phone']}";
-$message .= "<hr>";
+$message = "Данные клиента:\n";
+$message .= "Сообщение от: {$data['form']['name']}\n";
+$message .= "Email:  {$data['form']['email']}\n";
+$message .= "Телефон:  {$data['form']['phone']}\n";
 
 // Текст письма, данные по заявке
-$message .= "<h2>Данные по заявке</h2>";
-$message .= "Текст сообщения: {$data['form']['textarea']} <br>";
+$message .= "Текст сообщения: {$data['form']['textarea']}";
 // $message .= "Первоначальный платеж: {$data['data']['payment']} <br>";
 // $message .= "Срок в годах: {$data['data']['time']} <br>";
-$message .= "<hr>";
 
 // Результаты расчета
 // $message .= "<h2>Результаты расчета</h2>";
@@ -29,7 +26,7 @@ $message .= "<hr>";
 // $message .= "Переплата: {$data['results']['overPayment']} <br>";
 
 // Отправляем письмо и результат отправки успех/неуспех true/false записываем в $result
-$result = mail('popovevgen18042001@mail.com', 'Заявка', $message);
+$result = mail('popovevgen18042001@mail.ru', 'Заявка', $message);
 
 // На основе успешной или не успешной отправки сообщаем SUCCESS или FAILED
 // !!! Больше никакого вывода из данного файла быть не должно
